@@ -433,8 +433,8 @@
 
  /* Base Container Styles */
  .vss-share-buttons {
-     margin: 30px 0;
-     padding: 20px;
+     margin: 20px 0;
+     padding: 15px;
      clear: both;
      text-align: center;
  }
@@ -442,7 +442,7 @@
  .vss-buttons-wrapper {
      display: inline-flex;
      flex-wrap: wrap;
-     gap: 12px;
+     gap: 8px;
      justify-content: center;
      align-items: center;
  }
@@ -452,41 +452,48 @@
      display: inline-flex;
      align-items: center;
      justify-content: center;
-     gap: 8px;
-     padding: 10px 20px;
+     gap: 6px;
+     padding: 8px 14px;
      border: none;
-     border-radius: 6px;
-     text-decoration: none;
-     font-size: 14px;
+     border-radius: 5px;
+     text-decoration: none !important;
+     font-size: 15px;
      font-weight: 600;
      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-     transition: all 0.25s ease;
+     transition: all 0.2s ease;
      cursor: pointer;
      position: relative;
      overflow: hidden;
-     line-height: 1.5;
+     line-height: 1;
      white-space: nowrap;
  }
 
  .vss-button:hover {
-     text-decoration: none;
-     transform: translateY(-2px);
+     text-decoration: none !important;
+     transform: translateY(-1px);
  }
 
  .vss-button:active {
      transform: translateY(0);
  }
 
+ .vss-button:focus {
+     outline: none;
+     text-decoration: none !important;
+ }
+
  .vss-icon {
-     font-size: 16px;
+     font-size: 18px;
      font-style: normal;
      font-weight: bold;
      line-height: 1;
  }
 
  .vss-label {
-     font-size: 14px;
+     font-size: 15px;
+     font-weight: 600;
      line-height: 1;
+     text-decoration: none !important;
  }
 
  /* ========================================
@@ -499,13 +506,13 @@
  }
 
  .vss-style-flat .vss-button {
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
      color: #fff;
  }
 
  .vss-style-flat .vss-button:hover {
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-     filter: brightness(1.1);
+     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+     filter: brightness(1.08);
  }
 
  .vss-style-flat .vss-button:active {
@@ -554,7 +561,7 @@
      backdrop-filter: blur(10px);
      -webkit-backdrop-filter: blur(10px);
      border: 1px solid rgba(255, 255, 255, 0.2);
-     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
      color: #fff;
      position: relative;
  }
@@ -566,14 +573,14 @@
      left: 0;
      right: 0;
      bottom: 0;
-     border-radius: 6px;
+     border-radius: 5px;
      opacity: 0;
-     transition: opacity 0.25s ease;
+     transition: opacity 0.2s ease;
  }
 
  .vss-style-glass .vss-button:hover {
      border-color: rgba(255, 255, 255, 0.3);
-     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
  }
 
  .vss-style-glass .vss-button:hover::before {
@@ -605,11 +612,12 @@
      border: 2px solid;
      box-shadow: none;
      font-weight: 600;
+     padding: 6px 12px;
  }
 
  .vss-style-wire .vss-button:hover {
      color: #fff !important;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
  }
 
  /* Wire Network Colors */
@@ -764,8 +772,8 @@
  }
 
  .vss-floating-sidebar .vss-button {
-     width: 50px;
-     height: 50px;
+     width: 45px;
+     height: 45px;
      justify-content: center;
      padding: 0;
      border-radius: 50%;
@@ -776,7 +784,7 @@
  }
 
  .vss-floating-sidebar .vss-icon {
-     font-size: 20px;
+     font-size: 18px;
  }
 
  /* ========================================
@@ -796,29 +804,32 @@
 
  .vss-popup-toggle {
      background: #2c3e50;
-     font-size: 16px;
+     font-size: 15px;
      font-weight: 600;
      cursor: pointer;
      margin: 0 auto;
-     padding: 12px 24px;
-     border-radius: 8px;
+     padding: 8px 16px;
+     border-radius: 5px;
      color: #ecf0f1;
      display: inline-flex;
      align-items: center;
-     gap: 8px;
-     transition: all 0.3s ease;
-     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+     gap: 6px;
+     transition: all 0.2s ease;
+     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+     text-decoration: none !important;
  }
 
  .vss-popup-toggle:hover {
      background: #34495e;
-     transform: translateY(-2px);
-     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+     transform: translateY(-1px);
+     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+     text-decoration: none !important;
  }
 
  .vss-share-icon {
-     font-size: 18px;
+     font-size: 16px;
      font-style: normal;
+     line-height: 1;
  }
 
  .vss-popup-checkbox:checked + .vss-popup-toggle {
@@ -830,17 +841,17 @@
      opacity: 0;
      transform: scale(0) translateY(-20px);
      transform-origin: 50% 0%;
-     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
      position: relative;
-     margin-top: 20px;
+     margin-top: 15px;
      display: flex;
      flex-wrap: nowrap;
      justify-content: center;
      background: #3b5998;
      padding: 0;
-     border-radius: 8px;
+     border-radius: 6px;
      overflow: hidden;
-     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+     box-shadow: 0 3px 15px rgba(0,0,0,0.15);
  }
 
  .vss-popup-checkbox:checked ~ .vss-buttons-wrapper {
@@ -854,27 +865,27 @@
      position: absolute;
      left: 50%;
      bottom: 100%;
-     margin-left: -12px;
+     margin-left: -10px;
      width: 0;
      height: 0;
-     border-left: 12px solid transparent;
-     border-right: 12px solid transparent;
-     border-bottom: 12px solid #3b5998;
+     border-left: 10px solid transparent;
+     border-right: 10px solid transparent;
+     border-bottom: 10px solid #3b5998;
  }
 
  .vss-style-popup .vss-button {
      flex: 1;
-     min-width: 60px;
-     height: 60px;
+     min-width: 55px;
+     height: 55px;
      display: flex;
      align-items: center;
      justify-content: center;
      color: #fff;
-     font-size: 24px;
+     font-size: 22px;
      border-radius: 0;
      padding: 0;
      margin: 0;
-     transition: all 0.3s ease;
+     transition: all 0.2s ease;
      border-right: 1px solid rgba(255,255,255,0.1);
  }
 
@@ -884,7 +895,7 @@
 
  .vss-style-popup .vss-button:hover {
      background: rgba(0,0,0,0.2);
-     transform: translateY(-3px) scale(1.1);
+     transform: translateY(-2px) scale(1.05);
      z-index: 10;
  }
 
@@ -893,7 +904,7 @@
  }
 
  .vss-style-popup .vss-icon {
-     font-size: 24px;
+     font-size: 22px;
  }
 
  /* Popup Style Network Colors */
@@ -917,8 +928,12 @@
      }
 
      .vss-button {
-         font-size: 13px;
-         padding: 8px 16px;
+         font-size: 14px;
+         padding: 7px 12px;
+     }
+
+     .vss-label {
+         font-size: 14px;
      }
 
      .vss-floating-sidebar {
@@ -932,17 +947,21 @@
      }
 
      .vss-button {
-         width: 44px;
-         height: 44px;
+         width: 40px;
+         height: 40px;
          justify-content: center;
          padding: 0;
          border-radius: 50%;
      }
 
+     .vss-icon {
+         font-size: 18px;
+     }
+
      .vss-style-wire .vss-button,
      .vss-style-glass .vss-button {
-         width: 44px;
-         height: 44px;
+         width: 40px;
+         height: 40px;
      }
 
      .vss-style-popup .vss-buttons-wrapper {
