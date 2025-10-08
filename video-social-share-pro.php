@@ -3,7 +3,7 @@
  * Plugin Name: Video Social Share Pro
  * Plugin URI: https://github.com/jsrothwell/Video-Social-Share-Pro
  * Description: Professional social sharing buttons optimized for video content sites with YouTube integration
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Jamieson Rothwell
  * Author URI: https://github.com/jsrothwell
  * License: GPL2
@@ -31,6 +31,8 @@
 
      // Enqueue frontend styles and scripts
      public function enqueue_frontend_assets() {
+         // Font Awesome for icons
+         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
          wp_enqueue_style('video-social-share-css', plugin_dir_url(__FILE__) . 'assets/style.css', array(), '1.0.0');
          wp_enqueue_script('video-social-share-js', plugin_dir_url(__FILE__) . 'assets/script.js', array('jquery'), '1.0.0', true);
      }
@@ -281,7 +283,7 @@
          if ($style === 'popup') {
              $html .= '<input type="checkbox" class="vss-popup-checkbox" id="vss-popup-' . $post_id . '" />';
              $html .= '<label for="vss-popup-' . $post_id . '" class="vss-popup-toggle">';
-             $html .= '<i class="vss-share-icon">⤴</i> <span>Share</span>';
+             $html .= '<i class="fas fa-share-alt"></i> <span>Share</span>';
              $html .= '</label>';
          }
 
@@ -292,7 +294,7 @@
                  case 'facebook':
                      $share_url = 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($post_url);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-facebook" target="_blank" rel="noopener" title="Share on Facebook">';
-                     $html .= '<span class="vss-icon">f</span>';
+                     $html .= '<i class="fab fa-facebook-f"></i>';
                      $html .= '<span class="vss-label">Facebook</span>';
                      $html .= '</a>';
                      break;
@@ -300,7 +302,7 @@
                  case 'twitter':
                      $share_url = 'https://twitter.com/intent/tweet?url=' . urlencode($post_url) . '&text=' . urlencode($post_title);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-twitter" target="_blank" rel="noopener" title="Share on Twitter">';
-                     $html .= '<span class="vss-icon">𝕏</span>';
+                     $html .= '<i class="fab fa-x-twitter"></i>';
                      $html .= '<span class="vss-label">Twitter</span>';
                      $html .= '</a>';
                      break;
@@ -308,7 +310,7 @@
                  case 'linkedin':
                      $share_url = 'https://www.linkedin.com/sharing/share-offsite/?url=' . urlencode($post_url);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">';
-                     $html .= '<span class="vss-icon">in</span>';
+                     $html .= '<i class="fab fa-linkedin-in"></i>';
                      $html .= '<span class="vss-label">LinkedIn</span>';
                      $html .= '</a>';
                      break;
@@ -317,7 +319,7 @@
                      if ($post_thumbnail) {
                          $share_url = 'https://pinterest.com/pin/create/button/?url=' . urlencode($post_url) . '&media=' . urlencode($post_thumbnail) . '&description=' . urlencode($post_title);
                          $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-pinterest" target="_blank" rel="noopener" title="Pin on Pinterest">';
-                         $html .= '<span class="vss-icon">℗</span>';
+                         $html .= '<i class="fab fa-pinterest-p"></i>';
                          $html .= '<span class="vss-label">Pinterest</span>';
                          $html .= '</a>';
                      }
@@ -326,7 +328,7 @@
                  case 'reddit':
                      $share_url = 'https://reddit.com/submit?url=' . urlencode($post_url) . '&title=' . urlencode($post_title);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-reddit" target="_blank" rel="noopener" title="Share on Reddit">';
-                     $html .= '<span class="vss-icon">⊚</span>';
+                     $html .= '<i class="fab fa-reddit-alien"></i>';
                      $html .= '<span class="vss-label">Reddit</span>';
                      $html .= '</a>';
                      break;
@@ -334,7 +336,7 @@
                  case 'whatsapp':
                      $share_url = 'https://wa.me/?text=' . urlencode($post_title . ' ' . $post_url);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-whatsapp" target="_blank" rel="noopener" title="Share on WhatsApp">';
-                     $html .= '<span class="vss-icon">⌘</span>';
+                     $html .= '<i class="fab fa-whatsapp"></i>';
                      $html .= '<span class="vss-label">WhatsApp</span>';
                      $html .= '</a>';
                      break;
@@ -342,7 +344,7 @@
                  case 'telegram':
                      $share_url = 'https://t.me/share/url?url=' . urlencode($post_url) . '&text=' . urlencode($post_title);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-telegram" target="_blank" rel="noopener" title="Share on Telegram">';
-                     $html .= '<span class="vss-icon">✈</span>';
+                     $html .= '<i class="fab fa-telegram-plane"></i>';
                      $html .= '<span class="vss-label">Telegram</span>';
                      $html .= '</a>';
                      break;
@@ -350,7 +352,7 @@
                  case 'email':
                      $share_url = 'mailto:?subject=' . urlencode($post_title) . '&body=' . urlencode($post_url);
                      $html .= '<a href="' . esc_url($share_url) . '" class="vss-button vss-email" title="Share via Email">';
-                     $html .= '<span class="vss-icon">✉</span>';
+                     $html .= '<i class="fas fa-envelope"></i>';
                      $html .= '<span class="vss-label">Email</span>';
                      $html .= '</a>';
                      break;
@@ -358,7 +360,7 @@
                  case 'youtube':
                      if ($youtube_channel) {
                          $html .= '<a href="' . esc_url($youtube_channel) . '?sub_confirmation=1" class="vss-button vss-youtube" target="_blank" rel="noopener" title="Subscribe on YouTube">';
-                         $html .= '<span class="vss-icon">▶</span>';
+                         $html .= '<i class="fab fa-youtube"></i>';
                          $html .= '<span class="vss-label">Subscribe</span>';
                          $html .= '</a>';
                      }
@@ -429,12 +431,12 @@
      }
 
      // Create CSS file
-     $css_content = "/* Video Social Share Pro Styles - Bootstrap Inspired */
+     $css_content = "/* Video Social Share Pro - Modern Bootstrap Style */
 
- /* Base Container Styles */
+ /* Base Container */
  .vss-share-buttons {
-     margin: 20px 0;
-     padding: 15px;
+     margin: 25px 0;
+     padding: 0;
      clear: both;
      text-align: center;
  }
@@ -442,7 +444,7 @@
  .vss-buttons-wrapper {
      display: inline-flex;
      flex-wrap: wrap;
-     gap: 8px;
+     gap: 10px;
      justify-content: center;
      align-items: center;
  }
@@ -452,20 +454,20 @@
      display: inline-flex;
      align-items: center;
      justify-content: center;
-     gap: 6px;
-     padding: 8px 14px;
+     gap: 7px;
+     padding: 9px 16px;
      border: none;
-     border-radius: 5px;
+     border-radius: 4px;
      text-decoration: none !important;
-     font-size: 15px;
-     font-weight: 600;
+     font-size: 14px;
+     font-weight: 500;
      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-     transition: all 0.2s ease;
+     transition: all 0.15s ease-in-out;
      cursor: pointer;
      position: relative;
-     overflow: hidden;
-     line-height: 1;
+     line-height: 1.5;
      white-space: nowrap;
+     min-height: 38px;
  }
 
  .vss-button:hover {
@@ -482,22 +484,22 @@
      text-decoration: none !important;
  }
 
- .vss-icon {
-     font-size: 18px;
-     font-style: normal;
-     font-weight: bold;
+ .vss-button i {
+     font-size: 16px;
      line-height: 1;
+     width: 16px;
+     text-align: center;
  }
 
  .vss-label {
-     font-size: 15px;
-     font-weight: 600;
+     font-size: 14px;
+     font-weight: 500;
      line-height: 1;
      text-decoration: none !important;
  }
 
  /* ========================================
-    FLAT STYLE (Modern Bootstrap)
+    FLAT STYLE (Bootstrap Default)
     ======================================== */
 
  .vss-style-flat {
@@ -506,46 +508,47 @@
  }
 
  .vss-style-flat .vss-button {
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
      color: #fff;
- }
-
- .vss-style-flat .vss-button:hover {
-     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-     filter: brightness(1.08);
- }
-
- .vss-style-flat .vss-button:active {
      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
  }
 
- /* Flat Network Colors */
- .vss-style-flat .vss-facebook { background: #1877f2; }
- .vss-style-flat .vss-facebook:hover { background: #166fe5; }
+ .vss-style-flat .vss-button:hover {
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+     filter: brightness(1.05);
+ }
 
- .vss-style-flat .vss-twitter { background: #000000; }
- .vss-style-flat .vss-twitter:hover { background: #1a1a1a; }
+ .vss-style-flat .vss-button:active {
+     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+     filter: brightness(0.95);
+ }
 
- .vss-style-flat .vss-linkedin { background: #0a66c2; }
- .vss-style-flat .vss-linkedin:hover { background: #095196; }
+ /* Flat Colors */
+ .vss-style-flat .vss-facebook { background-color: #1877f2; }
+ .vss-style-flat .vss-facebook:hover { background-color: #166fe5; }
 
- .vss-style-flat .vss-pinterest { background: #e60023; }
- .vss-style-flat .vss-pinterest:hover { background: #cc001f; }
+ .vss-style-flat .vss-twitter { background-color: #000000; }
+ .vss-style-flat .vss-twitter:hover { background-color: #1a1a1a; }
 
- .vss-style-flat .vss-reddit { background: #ff4500; }
- .vss-style-flat .vss-reddit:hover { background: #e63e00; }
+ .vss-style-flat .vss-linkedin { background-color: #0a66c2; }
+ .vss-style-flat .vss-linkedin:hover { background-color: #004182; }
 
- .vss-style-flat .vss-whatsapp { background: #25d366; }
- .vss-style-flat .vss-whatsapp:hover { background: #20bd5a; }
+ .vss-style-flat .vss-pinterest { background-color: #e60023; }
+ .vss-style-flat .vss-pinterest:hover { background-color: #bd081c; }
 
- .vss-style-flat .vss-telegram { background: #0088cc; }
- .vss-style-flat .vss-telegram:hover { background: #0077b3; }
+ .vss-style-flat .vss-reddit { background-color: #ff4500; }
+ .vss-style-flat .vss-reddit:hover { background-color: #e03d00; }
 
- .vss-style-flat .vss-email { background: #6c757d; }
- .vss-style-flat .vss-email:hover { background: #5a6268; }
+ .vss-style-flat .vss-whatsapp { background-color: #25d366; }
+ .vss-style-flat .vss-whatsapp:hover { background-color: #20ba5a; }
 
- .vss-style-flat .vss-youtube { background: #ff0000; }
- .vss-style-flat .vss-youtube:hover { background: #e60000; }
+ .vss-style-flat .vss-telegram { background-color: #0088cc; }
+ .vss-style-flat .vss-telegram:hover { background-color: #0077b3; }
+
+ .vss-style-flat .vss-email { background-color: #6c757d; }
+ .vss-style-flat .vss-email:hover { background-color: #5a6268; }
+
+ .vss-style-flat .vss-youtube { background-color: #ff0000; }
+ .vss-style-flat .vss-youtube:hover { background-color: #cc0000; }
 
  /* ========================================
     GLASS STYLE (Glassmorphism)
@@ -557,49 +560,23 @@
  }
 
  .vss-style-glass .vss-button {
-     background: rgba(255, 255, 255, 0.1);
+     background: rgba(255, 255, 255, 0.15);
      backdrop-filter: blur(10px);
      -webkit-backdrop-filter: blur(10px);
-     border: 1px solid rgba(255, 255, 255, 0.2);
-     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+     border: 1px solid rgba(255, 255, 255, 0.25);
      color: #fff;
-     position: relative;
- }
-
- .vss-style-glass .vss-button::before {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
-     border-radius: 5px;
-     opacity: 0;
-     transition: opacity 0.2s ease;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
  }
 
  .vss-style-glass .vss-button:hover {
-     border-color: rgba(255, 255, 255, 0.3);
-     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+     background: rgba(255, 255, 255, 0.25);
+     border-color: rgba(255, 255, 255, 0.35);
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
  }
-
- .vss-style-glass .vss-button:hover::before {
-     opacity: 1;
- }
-
- /* Glass Network Colors (Applied as gradient overlays) */
- .vss-style-glass .vss-facebook::before { background: linear-gradient(135deg, rgba(24, 119, 242, 0.3), rgba(24, 119, 242, 0.6)); }
- .vss-style-glass .vss-twitter::before { background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)); }
- .vss-style-glass .vss-linkedin::before { background: linear-gradient(135deg, rgba(10, 102, 194, 0.3), rgba(10, 102, 194, 0.6)); }
- .vss-style-glass .vss-pinterest::before { background: linear-gradient(135deg, rgba(230, 0, 35, 0.3), rgba(230, 0, 35, 0.6)); }
- .vss-style-glass .vss-reddit::before { background: linear-gradient(135deg, rgba(255, 69, 0, 0.3), rgba(255, 69, 0, 0.6)); }
- .vss-style-glass .vss-whatsapp::before { background: linear-gradient(135deg, rgba(37, 211, 102, 0.3), rgba(37, 211, 102, 0.6)); }
- .vss-style-glass .vss-telegram::before { background: linear-gradient(135deg, rgba(0, 136, 204, 0.3), rgba(0, 136, 204, 0.6)); }
- .vss-style-glass .vss-email::before { background: linear-gradient(135deg, rgba(108, 117, 125, 0.3), rgba(108, 117, 125, 0.6)); }
- .vss-style-glass .vss-youtube::before { background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.6)); }
 
  /* ========================================
-    WIRE STYLE (Outline/Ghost)
+    WIRE STYLE (Outline)
     ======================================== */
 
  .vss-style-wire {
@@ -610,23 +587,22 @@
  .vss-style-wire .vss-button {
      background: transparent;
      border: 2px solid;
+     font-weight: 500;
      box-shadow: none;
-     font-weight: 600;
-     padding: 6px 12px;
  }
 
  .vss-style-wire .vss-button:hover {
      color: #fff !important;
-     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
  }
 
- /* Wire Network Colors */
+ /* Wire Colors */
  .vss-style-wire .vss-facebook {
      color: #1877f2;
      border-color: #1877f2;
  }
  .vss-style-wire .vss-facebook:hover {
-     background: #1877f2;
+     background-color: #1877f2;
  }
 
  .vss-style-wire .vss-twitter {
@@ -634,7 +610,7 @@
      border-color: #000000;
  }
  .vss-style-wire .vss-twitter:hover {
-     background: #000000;
+     background-color: #000000;
  }
 
  .vss-style-wire .vss-linkedin {
@@ -642,7 +618,7 @@
      border-color: #0a66c2;
  }
  .vss-style-wire .vss-linkedin:hover {
-     background: #0a66c2;
+     background-color: #0a66c2;
  }
 
  .vss-style-wire .vss-pinterest {
@@ -650,7 +626,7 @@
      border-color: #e60023;
  }
  .vss-style-wire .vss-pinterest:hover {
-     background: #e60023;
+     background-color: #e60023;
  }
 
  .vss-style-wire .vss-reddit {
@@ -658,7 +634,7 @@
      border-color: #ff4500;
  }
  .vss-style-wire .vss-reddit:hover {
-     background: #ff4500;
+     background-color: #ff4500;
  }
 
  .vss-style-wire .vss-whatsapp {
@@ -666,7 +642,7 @@
      border-color: #25d366;
  }
  .vss-style-wire .vss-whatsapp:hover {
-     background: #25d366;
+     background-color: #25d366;
  }
 
  .vss-style-wire .vss-telegram {
@@ -674,7 +650,7 @@
      border-color: #0088cc;
  }
  .vss-style-wire .vss-telegram:hover {
-     background: #0088cc;
+     background-color: #0088cc;
  }
 
  .vss-style-wire .vss-email {
@@ -682,7 +658,7 @@
      border-color: #6c757d;
  }
  .vss-style-wire .vss-email:hover {
-     background: #6c757d;
+     background-color: #6c757d;
  }
 
  .vss-style-wire .vss-youtube {
@@ -690,62 +666,7 @@
      border-color: #ff0000;
  }
  .vss-style-wire .vss-youtube:hover {
-     background: #ff0000;
- }
-
- /* ========================================
-    LEGACY STYLES (Kept for compatibility)
-    ======================================== */
-
- /* Style Variations */
- .vss-style-rounded .vss-button {
-     border-radius: 50px;
- }
-
- .vss-style-square .vss-button {
-     border-radius: 0;
- }
-
- .vss-style-minimal .vss-button {
-     background: transparent;
-     border: 2px solid currentColor;
-     padding: 10px 18px;
- }
-
- .vss-style-minimal .vss-facebook { color: #1877f2; }
- .vss-style-minimal .vss-twitter { color: #000; }
- .vss-style-minimal .vss-linkedin { color: #0077b5; }
- .vss-style-minimal .vss-pinterest { color: #e60023; }
- .vss-style-minimal .vss-reddit { color: #ff4500; }
- .vss-style-minimal .vss-whatsapp { color: #25d366; }
- .vss-style-minimal .vss-telegram { color: #0088cc; }
- .vss-style-minimal .vss-email { color: #666; }
- .vss-style-minimal .vss-youtube { color: #ff0000; }
-
- .vss-style-minimal .vss-button:hover {
-     color: #fff !important;
- }
-
- .vss-style-minimal .vss-facebook:hover { background: #1877f2; }
- .vss-style-minimal .vss-twitter:hover { background: #000; }
- .vss-style-minimal .vss-linkedin:hover { background: #0077b5; }
- .vss-style-minimal .vss-pinterest:hover { background: #e60023; }
- .vss-style-minimal .vss-reddit:hover { background: #ff4500; }
- .vss-style-minimal .vss-whatsapp:hover { background: #25d366; }
- .vss-style-minimal .vss-telegram:hover { background: #0088cc; }
- .vss-style-minimal .vss-email:hover { background: #666; }
- .vss-style-minimal .vss-youtube:hover { background: #ff0000; }
-
- .vss-style-boxed {
-     background: transparent;
-     padding: 0;
- }
-
- .vss-style-boxed .vss-buttons-wrapper {
-     background: #fff;
-     padding: 20px;
-     border: 2px solid #e1e8ed;
-     border-radius: 8px;
+     background-color: #ff0000;
  }
 
  /* ========================================
@@ -772,18 +693,23 @@
  }
 
  .vss-floating-sidebar .vss-button {
-     width: 45px;
-     height: 45px;
+     width: 48px;
+     height: 48px;
      justify-content: center;
      padding: 0;
      border-radius: 50%;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+ }
+
+ .vss-floating-sidebar .vss-button:hover {
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
  }
 
  .vss-floating-sidebar .vss-label {
      display: none;
  }
 
- .vss-floating-sidebar .vss-icon {
+ .vss-floating-sidebar .vss-button i {
      font-size: 18px;
  }
 
@@ -795,7 +721,6 @@
      background: transparent;
      padding: 0;
      position: relative;
-     min-height: 100px;
  }
 
  .vss-popup-checkbox {
@@ -803,120 +728,70 @@
  }
 
  .vss-popup-toggle {
-     background: #2c3e50;
-     font-size: 15px;
-     font-weight: 600;
+     background-color: #007bff;
+     font-size: 14px;
+     font-weight: 500;
      cursor: pointer;
      margin: 0 auto;
-     padding: 8px 16px;
-     border-radius: 5px;
-     color: #ecf0f1;
+     padding: 9px 18px;
+     border-radius: 4px;
+     color: #fff;
      display: inline-flex;
      align-items: center;
-     gap: 6px;
-     transition: all 0.2s ease;
-     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+     gap: 7px;
+     transition: all 0.15s ease-in-out;
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
      text-decoration: none !important;
+     border: none;
+     min-height: 38px;
  }
 
  .vss-popup-toggle:hover {
-     background: #34495e;
+     background-color: #0056b3;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
      transform: translateY(-1px);
-     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
      text-decoration: none !important;
  }
 
- .vss-share-icon {
-     font-size: 16px;
-     font-style: normal;
-     line-height: 1;
+ .vss-popup-toggle i {
+     font-size: 14px;
  }
 
  .vss-popup-checkbox:checked + .vss-popup-toggle {
-     background: #95a5a6;
-     color: #2c3e50;
+     background-color: #6c757d;
+ }
+
+ .vss-popup-checkbox:checked + .vss-popup-toggle:hover {
+     background-color: #5a6268;
  }
 
  .vss-style-popup .vss-buttons-wrapper {
      opacity: 0;
-     transform: scale(0) translateY(-20px);
+     transform: scale(0.9) translateY(-10px);
      transform-origin: 50% 0%;
-     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+     transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
      position: relative;
      margin-top: 15px;
      display: flex;
-     flex-wrap: nowrap;
+     flex-wrap: wrap;
      justify-content: center;
-     background: #3b5998;
-     padding: 0;
-     border-radius: 6px;
-     overflow: hidden;
-     box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+     gap: 10px;
+     pointer-events: none;
  }
 
  .vss-popup-checkbox:checked ~ .vss-buttons-wrapper {
      opacity: 1;
      transform: scale(1) translateY(0);
- }
-
- .vss-style-popup .vss-buttons-wrapper::after {
-     content: '';
-     display: block;
-     position: absolute;
-     left: 50%;
-     bottom: 100%;
-     margin-left: -10px;
-     width: 0;
-     height: 0;
-     border-left: 10px solid transparent;
-     border-right: 10px solid transparent;
-     border-bottom: 10px solid #3b5998;
+     pointer-events: auto;
  }
 
  .vss-style-popup .vss-button {
-     flex: 1;
-     min-width: 55px;
-     height: 55px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     color: #fff;
-     font-size: 22px;
-     border-radius: 0;
-     padding: 0;
-     margin: 0;
-     transition: all 0.2s ease;
-     border-right: 1px solid rgba(255,255,255,0.1);
- }
-
- .vss-style-popup .vss-button:last-child {
-     border-right: none;
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
  }
 
  .vss-style-popup .vss-button:hover {
-     background: rgba(0,0,0,0.2);
-     transform: translateY(-2px) scale(1.05);
-     z-index: 10;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
  }
-
- .vss-style-popup .vss-label {
-     display: none;
- }
-
- .vss-style-popup .vss-icon {
-     font-size: 22px;
- }
-
- /* Popup Style Network Colors */
- .vss-style-popup .vss-facebook { background: #3b5998; }
- .vss-style-popup .vss-twitter { background: #6cdfea; }
- .vss-style-popup .vss-linkedin { background: #0077b5; }
- .vss-style-popup .vss-pinterest { background: #e60023; }
- .vss-style-popup .vss-reddit { background: #ff4500; }
- .vss-style-popup .vss-whatsapp { background: #25d366; }
- .vss-style-popup .vss-telegram { background: #0088cc; }
- .vss-style-popup .vss-email { background: #7f8c8d; }
- .vss-style-popup .vss-youtube { background: #cc181e; }
 
  /* ========================================
     RESPONSIVE DESIGN
@@ -928,12 +803,17 @@
      }
 
      .vss-button {
-         font-size: 14px;
-         padding: 7px 12px;
+         font-size: 13px;
+         padding: 8px 14px;
+         min-height: 36px;
+     }
+
+     .vss-button i {
+         font-size: 15px;
      }
 
      .vss-label {
-         font-size: 14px;
+         font-size: 13px;
      }
 
      .vss-floating-sidebar {
@@ -947,31 +827,22 @@
      }
 
      .vss-button {
-         width: 40px;
-         height: 40px;
+         width: 42px;
+         height: 42px;
+         min-height: 42px;
          justify-content: center;
          padding: 0;
          border-radius: 50%;
      }
 
-     .vss-icon {
+     .vss-button i {
          font-size: 18px;
+         width: auto;
      }
 
-     .vss-style-wire .vss-button,
-     .vss-style-glass .vss-button {
-         width: 40px;
-         height: 40px;
-     }
-
-     .vss-style-popup .vss-buttons-wrapper {
-         flex-wrap: wrap;
-     }
-
-     .vss-style-popup .vss-button {
-         min-width: 50px;
-         height: 50px;
-         font-size: 20px;
+     .vss-style-wire .vss-button {
+         width: 42px;
+         height: 42px;
      }
  }";
 
